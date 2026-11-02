@@ -1,0 +1,23 @@
+name: Employee Leave Balance Validation
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  validate-leave-balance:
+    name: Validate leave balances
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run leave-balance validation script
+        run: python leave_balance_validation.py
